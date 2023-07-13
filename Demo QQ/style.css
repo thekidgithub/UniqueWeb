@@ -1,0 +1,714 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    --bg: rgba(149, 149, 149, 0.2);
+    --bgdeep: rgba(103, 103, 103, 0.2);
+    --blue: rgb(91, 91, 255);
+}
+
+body {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+}
+
+/* 总体的架构（各个模块的长宽，位置） */
+.container {
+    width: 940px;
+    height: 630px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 实现模态框的阴影层 */
+.container::before {
+    position: absolute;
+    content: '';
+    width: 940px;
+    height: 630px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    display: none;
+}
+
+.container.show::before {
+    display: block;
+}
+
+.aside {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 630px;
+    width: 60px;
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    height: 630px;
+    width: 250px;
+}
+
+.main {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 630px;
+    width: 630px;
+    z-index: 1;
+}
+
+.group-info {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 630px;
+    height: 65px;
+    border-bottom: 1px solid var(--bgdeep);
+    background-color: var(--bg);
+}
+
+.group-list {
+    position: absolute;
+    top: 65px;
+    right: 0;
+    height: 565px;
+    width: 170px;
+    border-left: 1px solid var(--bgdeep);
+    background-color: var(--bg);
+}
+
+.group-chat {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 565px;
+    width: 460px;
+    background-color: var(--bg);
+}
+
+/* 最左边的侧边栏，包括头像，各式按钮 */
+.profile {
+    cursor: pointer;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-image: url(images/OIP.jpg);
+    background-repeat: no-repeat;
+}
+
+.status {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(81, 244, 32);
+}
+
+.top-buttons li,
+.bottom-buttons li {
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    text-align: center;
+    line-height: 40px;
+    transition: background-color 0.3s ease-in;
+}
+
+.top-buttons li span,
+.bottom-buttons li span {
+    font-size: 25px;
+}
+
+.top-buttons li.seleted {
+    color: blue;
+    background-color: var(--bgdeep)
+}
+
+.top-buttons li:hover {
+    background-color: var(--bgdeep);
+}
+
+.bottom-buttons {
+    position: absolute;
+    bottom: 0;
+}
+
+.bottom-buttons li:hover {
+    color: blue;
+}
+
+/* 好友栏，包括搜索框和好友/群列表（只有一个） */
+.search {
+    position: absolute;
+    padding-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    top: 0;
+    height: 65px;
+    width: 250px;
+}
+
+.search0 {
+    padding-left: 20px;
+    width: 180px;
+    height: 30px;
+    border-radius: 5px;
+    border: 0;
+    background-color: var(--bgdeep);
+}
+
+.search0:focus {
+    outline: 0;
+}
+
+.add {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 25px;
+    font-size: 25px;
+    background-color: var(--bgdeep);
+    color: rgb(133, 133, 133);
+}
+
+.list li {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    top: 65px;
+    width: 250px;
+    height: 70px;
+    background-color: var(--blue);
+}
+
+.list li .pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-image: url(images/OIP.jpg);
+}
+
+.list li .text {
+    width: 150px;
+    height: 40px;
+}
+
+.list li .text .title {
+    color: #fff;
+}
+
+.list li .text .last-message {
+    color: #fff;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+/* 右上方的群信息栏，包括最右上角的三个按钮，群名称和群应用按钮 */
+.group-info .buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.group-info .buttons li {
+    float: left;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.group-info .buttons li:hover {
+    background-color: var(--bgdeep);
+}
+
+.group-info .buttons li:nth-child(3):hover {
+    color: #fff;
+    background-color: red;
+}
+
+.group-info .title {
+    position: absolute;
+    left: 20px;
+    bottom: 15px;
+}
+
+.group-info .apps {
+    position: absolute;
+    top: 30px;
+    right: 0;
+}
+
+.group-info .apps li {
+    float: left;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.group-info .apps li span {
+    font-size: 20px;
+}
+
+.group-info .apps li:hover {
+    color: var(--blue);
+}
+
+/* 这里是鼠标悬浮在群应用按钮上下方出现的小字 */
+.app-des {
+    display: none;
+    position: absolute;
+    transform: translateX(-5px);
+    height: 20px;
+    width: 60px;
+    border-radius: 3px;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 20px;
+    text-align: center;
+    background-color: #fff;
+    z-index: 10;
+}
+
+.group-info .apps li:hover .app-des {
+    display: block;
+    color: #000;
+}
+
+.group-info .group-apps ul {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.group-info .group-apps li {
+    display: none;
+    background-color: #fff;
+    width: 60px;
+    height: 30px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #000;
+    z-index: 11;
+}
+
+.group-info .group-apps li:hover {
+    background-color: rgb(201, 201, 201);
+    color: #000;
+}
+
+.group-info .group-apps li.show {
+    display: block;
+}
+
+/* 群侧边栏，包括群成员和群公告 */
+.group-list .group-message {
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid var(--bgdeep);
+    width: 170px;
+    height: 65px;
+}
+
+.group-list .group-members {
+    position: absolute;
+    top: 65px;
+    padding-top: 20px;
+    padding-left: 10px;
+    height: 500px;
+    width: 170px;
+}
+
+.group-list .group-members li {
+    padding-left: 10px;
+    margin-top: 5px;
+    width: 160px;
+    height: 20px;
+    /* background-color: #fff; */
+}
+
+.group-list .group-members li .group-profile {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-image: url(images/OIP.jpg);
+}
+
+.group-list .group-members li p {
+    float: left;
+    margin-right: 10px;
+    font-size: 10px;
+    color: rgb(88, 88, 88);
+    line-height: 20px;
+}
+
+.group-list .group-members li:first-child .group-status {
+    float: left;
+    width: 35px;
+    height: 15px;
+    border-radius: 3px;
+    margin-top: 2px;
+    font-size: 10px;
+    text-align: center;
+    line-height: 15px;
+    color: #ff9100;
+    background-color: #fbd491;
+}
+
+.group-list .group-members li:nth-child(2) .group-status {
+    float: left;
+    width: 50px;
+    height: 15px;
+    border-radius: 3px;
+    margin-top: 2px;
+    font-size: 10px;
+    text-align: center;
+    line-height: 15px;
+    color: #0442fc;
+    background-color: #91d6fb;
+}
+
+.group-list .group-members li:hover {
+    cursor: pointer;
+    background-color: var(--bgdeep);
+}
+
+/* 聊天界面的输入框和消息显示区 */
+.group-chat .chat-input {
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid var(--bgdeep);
+    width: 460px;
+    height: 200px;
+}
+
+.group-chat .chat-text {
+    position: absolute;
+    top: 0;
+    width: 460px;
+    height: 365px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* 聊天框的小功能按钮 */
+.chat-input .chat-apps {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.chat-input .chat-apps li {
+    float: left;
+    margin-left: 10px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.chat-input .chat-apps li:hover {
+    color: var(--blue);
+}
+
+.chat-app {
+    display: none;
+    position: absolute;
+    transform: translateX(-5px);
+    height: 20px;
+    width: 40px;
+    border-radius: 3px;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 20px;
+    text-align: center;
+    background-color: #fff;
+    z-index: 10;
+}
+
+.chat-input .chat-apps li:nth-child(n+6) .chat-app {
+    width: 60px;
+    transform: translateX(-15px);
+}
+
+.chat-input .chat-apps li span {
+    font-size: 20px;
+}
+
+.chat-input,
+.chat-apps li:hover .chat-app {
+    display: block;
+    color: #000;
+}
+
+.chat-input .chat-apps li:last-child {
+    margin-left: 180px;
+}
+
+/* 输入框的文本编辑内容和发送按钮 */
+.chat-input .input {
+    position: absolute;
+    top: 20px;
+    background: transparent;
+    padding-top: 10px;
+    padding-left: 15px;
+    width: 460px;
+    height: 130px;
+    border: 0;
+    font-size: 15px;
+    resize: none;
+}
+
+.chat-input .input:focus {
+    outline: 0;
+}
+
+.chat-input .send {
+    position: absolute;
+    bottom: 10px;
+    border: 0;
+    right: 10px;
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.9);
+    background-color: #0442fc;
+    text-align: center;
+    line-height: 30px;
+}
+
+.chat-input .send.hastext {
+    color: #fff;
+}
+
+.chat-input .send.hastext:hover {
+    background-color: #0034cf;
+}
+
+/* 发送出去的一段消息/图片 */
+.newtext {
+    display: flex;
+    justify-content: flex-end;
+    width: 460px;
+    margin-top: 20px;
+}
+
+.newprofile {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-left: 3px;
+    background-image: url(images/OIP.jpg);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.id {
+    font-size: 10px;
+    color: rgba(103, 103, 103, 0.5)
+}
+
+.textcontent {
+    max-width: 300px;
+    background-color: #0442fc;
+    border-radius: 5px;
+    margin-top: 3px;
+    padding: 5px;
+    font-size: 15px;
+    color: #fff;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.imgcontent {
+    max-width: 300px;
+    max-height: 300px;
+    margin-top: 3px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* 模态框 */
+.model-block {
+    visibility: hidden;
+    position: fixed;
+    top: 220px;
+    left: 500px;
+    background-color: #fff;
+    width: 540px;
+    height: 400px;
+    border-radius: 10px;
+    z-index: 12;
+    animation-fill-mode: both;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes turnup {
+    0% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.model-block.show {
+    display: block;
+    animation-name: turnup;
+}
+
+.model-block.hidden {
+    animation-name: disappear;
+}
+
+@keyframes disappear {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+}
+
+.model-block .left {
+    position: absolute;
+    padding: 20px;
+    width: 50%;
+    height: 100%;
+    border-right: 1px var(--bgdeep) solid;
+}
+
+.model-block .right {
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    width: 50%;
+    height: 100%;
+}
+
+.model-block .search1 {
+    width: 200px;
+    height: 30px;
+    padding-left: 10px;
+    background-color: var(--bg);
+    border: 0;
+}
+
+.search1:focus {
+    outline: 0;
+    border: 1px solid #91d6fb;
+}
+
+.model-block .right button {
+    position: absolute;
+    bottom: 20px;
+    width: 70px;
+    height: 30px;
+    border-radius: 3px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 30px;
+
+}
+
+.model-block .right button:active {
+    outline: 0;
+}
+
+.right .confirm {
+    right: 120px;
+    background-color: #0442fc;
+    border: 0;
+    color: #fff;
+}
+
+.right .cancel {
+    right: 30px;
+    border: 1px solid var(--bgdeep);
+    background-color: #fff;
+    color: #000;
+}
+
+.confirm:hover {
+    background-color: #000acf
+}
+
+.cancel:hover {
+    background-color: #c0c0c0;
+}
+
+/* 群应用中点击“更多”功能从右侧拉出来的窗口 */
+.more-settings {
+    position: absolute;
+    right: -250px;
+    top: 65px;
+    width: 250px;
+    height: 565px;
+    background-color: rgb(231, 231, 231);
+    font-size: 20px;
+    text-align: center;
+    z-index: 11;
+    transition: all 0.3s ease-in;
+}
+
+.more-settings.show {
+    transform: translateX(-250px);
+}

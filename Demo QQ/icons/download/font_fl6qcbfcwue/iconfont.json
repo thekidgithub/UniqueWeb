@@ -1,0 +1,156 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "109718",
+      "name": "app",
+      "font_class": "app",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "158975",
+      "name": "file",
+      "font_class": "file",
+      "unicode": "e739",
+      "unicode_decimal": 59193
+    },
+    {
+      "icon_id": "248939",
+      "name": "smile",
+      "font_class": "smile",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "474994",
+      "name": "tv",
+      "font_class": "tv",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "499147",
+      "name": "call",
+      "font_class": "call",
+      "unicode": "e905",
+      "unicode_decimal": 59653
+    },
+    {
+      "icon_id": "792349",
+      "name": "Microphone-话筒",
+      "font_class": "microphonehuatong",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "1336063",
+      "name": "List",
+      "font_class": "List",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "1455703",
+      "name": "profile",
+      "font_class": "profile",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "4766954",
+      "name": "star",
+      "font_class": "star",
+      "unicode": "e7df",
+      "unicode_decimal": 59359
+    },
+    {
+      "icon_id": "6151275",
+      "name": "clock",
+      "font_class": "clock",
+      "unicode": "e819",
+      "unicode_decimal": 59417
+    },
+    {
+      "icon_id": "6598320",
+      "name": "videocamera add",
+      "font_class": "videocameraadd",
+      "unicode": "e8ea",
+      "unicode_decimal": 59626
+    },
+    {
+      "icon_id": "7008971",
+      "name": "more",
+      "font_class": "more",
+      "unicode": "e710",
+      "unicode_decimal": 59152
+    },
+    {
+      "icon_id": "10200253",
+      "name": "channel",
+      "font_class": "channel",
+      "unicode": "e71c",
+      "unicode_decimal": 59164
+    },
+    {
+      "icon_id": "12932061",
+      "name": "l-collect",
+      "font_class": "l-collect",
+      "unicode": "e78e",
+      "unicode_decimal": 59278
+    },
+    {
+      "icon_id": "15188376",
+      "name": "game",
+      "font_class": "game",
+      "unicode": "e6e9",
+      "unicode_decimal": 59113
+    },
+    {
+      "icon_id": "15838472",
+      "name": "email",
+      "font_class": "email",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "15838521",
+      "name": "picture",
+      "font_class": "picture",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
+    },
+    {
+      "icon_id": "16618014",
+      "name": "chat",
+      "font_class": "chat",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
+    },
+    {
+      "icon_id": "29306631",
+      "name": "icon-people-plus",
+      "font_class": "icon-people-plus",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "34096480",
+      "name": "scissor",
+      "font_class": "scissor",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "34452907",
+      "name": "money-red-packet-fill",
+      "font_class": "money-red-packet-fill",
+      "unicode": "e831",
+      "unicode_decimal": 59441
+    }
+  ]
+}
