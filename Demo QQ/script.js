@@ -10,6 +10,10 @@ const buttonsOfModelBlock = document.querySelectorAll('.modelbutton');
 const container = document.querySelector('.container');
 const more = document.querySelector('.more');
 const moreSettings = document.querySelector('.more-settings');
+const lastMessage = document.querySelector('.last-message');
+const listTime = document.querySelector('.time');
+let lastMinute = 61;
+let lastHour = 25;
 updButton();
 
 input.addEventListener('keydown', (e) => {//输入文本时，对不同的按键决定换行/发送
@@ -46,17 +50,31 @@ function sendText() {//发送一个新的文本块（清空输入框，在消息
     const content = document.createElement('div');
     const id = document.createElement('div');
     const textContent = document.createElement('div');
+    const newTime = document.createElement('div');
+    const hour = new Date().getHours();
+    const minute = new Date().getMinutes();
     newText.classList.add('newtext');
     profile.classList.add('newprofile');
     content.classList.add('content');
     id.classList.add('id');
     textContent.classList.add('textcontent');
+    newTime.classList.add('newtime');
     id.innerHTML = 'thekid';
     textContent.innerHTML = text;
+    newTime.innerHTML = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute);
+    listTime.innerHTML = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute);
+    lastMessage.innerHTML = 'thekid:' + text;
+    if (text.length > 8)
+        lastMessage.innerHTML = 'thekid:' + text.slice(0, 8) + '...';
     content.appendChild(id);
     content.appendChild(textContent);
     newText.appendChild(content);
     newText.appendChild(profile);
+    if (minute != lastMinute || hour != lastHour) {
+        groupText.appendChild(newTime);
+        lastMinute = minute;
+        lastHour = hour;
+    }
     groupText.appendChild(newText);
 }
 
@@ -67,6 +85,11 @@ function sendImage() {//发送图片
     const id = document.createElement('div');
     const fileContent = document.createElement('input');
     const imgContent = document.createElement('img');
+    const newTime = document.createElement('div');
+    const hour = new Date().getHours();
+    const minute = new Date().getMinutes();
+    newTime.classList.add('newtime');
+    newTime.innerHTML = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute);
     //这段我之前没有学过，通过查阅资料写的
     fileContent.type = 'file';
     fileContent.click();
@@ -78,6 +101,13 @@ function sendImage() {//发送图片
                 imgContent.src = e.target.result;
             };
             reader.readAsDataURL(file);
+        }
+        listTime.innerHTML = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute);
+        lastMessage.innerHTML = 'thekid:[图片]';
+        if (minute != lastMinute || hour != lastHour) {
+            groupText.appendChild(newTime);
+            lastMinute = minute;
+            lastHour = hour;
         }
         groupText.appendChild(newText);
     });
@@ -91,7 +121,6 @@ function sendImage() {//发送图片
     content.appendChild(imgContent);
     newText.appendChild(content);
     newText.appendChild(profile);
-
 }
 
 groupApps.addEventListener('click', () => {//群应用下拉框

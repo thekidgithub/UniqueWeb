@@ -222,7 +222,7 @@ body {
 }
 
 .list li .text {
-    width: 150px;
+    width: 130px;
     height: 40px;
 }
 
@@ -232,10 +232,17 @@ body {
 
 .list li .text .last-message {
     color: #fff;
-    font-size: 15px;
-    font-weight: lighter;
+    margin-top: 5px;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
+.list li .time{
+    width: 50px;
+    height: 40px;
+    font-size: 12px;
+    color: #c0c0c0;
+}
 /* 右上方的群信息栏，包括最右上角的三个按钮，群名称和群应用按钮 */
 .group-info .buttons {
     position: absolute;
@@ -530,11 +537,19 @@ body {
 }
 
 /* 发送出去的一段消息/图片 */
+.newtime {
+    margin-top: 5px;
+    width: 460px;
+    height: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #c0c0c0
+}
 .newtext {
     display: flex;
     justify-content: flex-end;
     width: 460px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .newprofile {
