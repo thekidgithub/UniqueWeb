@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
+    <link rel="stylesheet" href="src/style.css">
+  </head>
+  <body>
+    <script type="importmap">
+      { "imports": {
+          "vue":               "https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.41/vue.esm-browser.prod.js",
+          "vue-router":        "https://cdnjs.cloudflare.com/ajax/libs/vue-router/4.1.5/vue-router.esm-browser.min.js",
+          "@vue/devtools-api": "https://unpkg.com/@vue/devtools-api@6.4.5/lib/esm/index.js"
+      } }
+    </script>
+    <div id="app">
+      <section class="todoapp">
+
+        <header class="header">
+          <h1>todos</h1>
+          <input type="text" class="new-todo" autofocus @keyup.enter="addTodo" placeholder="What needs to be done?">
+        </header>
+
+        <section class="main" v-show="todos.length">
+
+          <input type="checkbox" class="toggle-all" id="toggle-all" :checked="remaining === 0" @change="toggleAll">
+          <label for="toggle-all">Mark all as complete</label>
+
+          <ul class="todo-list">
+
+            <li v-for="todo in filteredTodos" class="todo" :key="todo.id"
+              :class="{completed:todo.completed,editing:todo === editedTodo}">
+
+              <div class="view">
+                <input type="checkbox" class="toggle" v-model="todo.completed">
+                <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
+                <button class="destroy" @click="removeTodo(todo)"></button>
+              </div>
+
+              <input type="text" v-if="todo === editedTodo" class="edit" v-model="todo.title"
+                @v-mount="({el})=>el.focus()" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)"
+                @keyup.escape="cancelEdit(todo)">
+
+            </li>
+
+          </ul>
+        </section>
+
+        <footer class="footer" v-show="todos.length">
+
+          <span class="todo-count">
+            <strong>{{ remaining }}</strong>
+            <span>{{ remaining === 1 ? 'item' : 'items' }} left</span>
+          </span>
+
+          <ul class="filters">
+            <li>
+              <a href="#/all" :class="{seleted: visibility === 'all'}">All</a>
+            </li>
+            <li>
+              <a href="#/active" :class="{seleted: visibility === 'active'}">Active</a>
+            </li>
+            <li>
+              <a href="#completed" :class="{seleted: visibility === 'completed'}">Completed</a>
+            </li>
+          </ul>
+
+          <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">Clear completed</button>
+          
+        </footer>
+      </section>
+    </div>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
